@@ -45,8 +45,8 @@ static int readInt(const char *prompt, int *value)
         end++;
     }
 
-    if (buffer[0] == '\0' || *end != '\0' || errno == ERANGE ||
-        parsed < INT_MIN || parsed > INT_MAX) {
+    if (end == buffer || buffer[0] == '\0' || *end != '\0' ||
+        errno == ERANGE || parsed < INT_MIN || parsed > INT_MAX)  {
         puts("Erreur : veuillez saisir un entier valide.");
         return 0;
     }
@@ -71,8 +71,8 @@ static int readAverage(const char *prompt, float *average)
         end++;
     }
 
-    if (buffer[0] == '\0' || *end != '\0' || errno == ERANGE ||
-        !(parsed >= 0.0f && parsed <= 20.0f)) {
+    if (end == buffer || buffer[0] == '\0' || *end != '\0' ||
+        errno == ERANGE || !(parsed >= 0.0f && parsed <= 20.0f)) {
         puts("Erreur : la moyenne doit être comprise entre 0 et 20.");
         return 0;
     }
